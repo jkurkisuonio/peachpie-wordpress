@@ -8,24 +8,24 @@ using PeachPied.WordPress.Standard;
 
 namespace PeachPied.Demo.Plugins
 {
-  public  class ShortcodePlugin : IWpPlugin
+  public  class JaniksShortcodePlugin : IWpPlugin
     {
-        public ShortcodePlugin()
+        public JaniksShortcodePlugin()
         {
         }
 
         public void Configure(WpApp app)
         {
-            app.AddShortcode("dotnetWpUser", new Func<string>(() => //new shortcode_handler((attrs, content) =>
+            app.AddShortcode("JaniksdotnetWpUser", new Func<string>(() => //new shortcode_handler((attrs, content) =>
             {
                 var user = (WP_User)app.Context.Call("wp_get_current_user", Array.Empty<PhpValue>()).AsObject();
                 if (user != null)
                 {
-                    return $"Your WP_User ID is {user.ID}.";
+                    return $"JANIKS Your WP_User ID is {user.ID}.";
                 }
                 else
                 {
-                    return "You are not logged in.";
+                    return "JANIKS You are not logged in.";
                 }
             }));
         }

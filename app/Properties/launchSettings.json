@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5004/",
+      "applicationUrl": "http://wpdotnet.hallinto.local/",
       "sslPort": 0
     }
   },
@@ -21,6 +21,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
+      "nativeDebugging": true,
       "applicationUrl": "http://localhost:5004/"
     }
   }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Composition;
+
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Pchp.Core;
 using PeachPied.WordPress.Standard;
@@ -14,8 +15,11 @@ namespace PeachPied.Demo.Plugins
         {
             // provide plugins that will be loaded into wpdotnet:
 
+            yield return new JaniksShortcodePlugin();
             yield return new DashboardPlugin();
             yield return new ShortcodePlugin();
+            yield return new JaniKoePlugin();
+
         }
     }
 }

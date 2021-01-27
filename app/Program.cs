@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PeachPied.Demo.Plugins;
 using PeachPied.WordPress.AspNetCore;
+using Microsoft.Extensions.Options;
 
 namespace PeachPied.Demo
 {
@@ -19,7 +20,7 @@ namespace PeachPied.Demo
             //
             var host = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5004/")
+                .UseUrls("http://wpdotnet.hallinto.local")
                 .Build();
 
             host.Run();
@@ -34,11 +35,20 @@ namespace PeachPied.Demo
             services.AddResponseCompression();
             services.AddWordPress(options =>
             {
-                // options.SiteUrl =
-                // options.HomeUrl = "http://localhost:5004";
-                
+                 options.SiteUrl =
+                 options.HomeUrl = "http://localhost";
+
                 // options.PluginContainer.Add(new DashboardPlugin());
+                options.PluginContainer.Add<JaniksShortcodePlugin>();
+                options.PluginContainer.Add<JaniKoePlugin>();
+            
+                //options.PluginContainer.Add({new JaniKoePlugin(), new DashboardPlugin(), new ShortcodePlugin()  });
+               options.PluginContainer.Add<DashboardPlugin>();
+                options.PluginContainer.Add<ShortcodePlugin>();
+               
             });
+           
+            
         }
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env, IConfiguration configuration)
@@ -48,8 +58,7 @@ namespace PeachPied.Demo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseWordPress();
-
+            app.UseWordPress();            
             app.UseDefaultFiles();
         }
     }
